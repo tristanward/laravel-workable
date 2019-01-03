@@ -4,6 +4,7 @@ namespace Tristanward\LaravelWorkable\Providers;
 
 use Tristanward\LaravelWorkable\LaravelWorkable;
 use Illuminate\Support\ServiceProvider;
+use Tristanward\LaravelWorkable\Console\LaravelWorkableCache;
 
 class LaravelWorkableServiceProvider extends ServiceProvider
 {
@@ -18,6 +19,7 @@ class LaravelWorkableServiceProvider extends ServiceProvider
 
         $this->publishConfigs();
         $this->publishDatabaseFiles();
+        $this->publishCommands();
     }
 
     /**
@@ -67,5 +69,19 @@ class LaravelWorkableServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Database/migrations' => base_path('database/migrations')
         ], 'migrations');
+    }
+
+    /**
+     * Register console command.
+     *
+     * @return void
+     */
+    private function publishCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                LaravelWorkableCache::class,
+            ]);
+        }
     }
 }

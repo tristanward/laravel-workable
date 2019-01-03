@@ -14,10 +14,11 @@ class WorkableVacancy extends Model
     protected $guarded = ['id'];
 
     /**
-     * The attributes that should be mutated to dates.
+     * The attributes that should be cast to native types.
      *
      * @var array
      */
-    protected $dates = [
+    protected $casts = [
+        'location' => 'array',
     ];
 }

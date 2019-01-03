@@ -15,7 +15,22 @@ class CreateWorkableVacanciesTable extends Migration
     {
         Schema::create('workable_vacancies', function (Blueprint $table) {
             $table->increments('id');
-
+            $table->string('vacancy_id');
+            $table->string('title');
+            $table->string('full_title');
+            $table->string('shortcode');
+            $table->string('code');
+            $table->string('state');
+            $table->string('department')->nullable();
+            $table->string('url');
+            $table->string('application_url');
+            $table->string('shortlink');
+            $table->json('location');
+            $table->string('workable_created_at');
+            $table->text('description')->nullable();
+            $table->text('requirements')->nullable();
+            $table->text('benefits')->nullable();
+            $table->string('employment_type')->nullable();
             $table->timestamps();
         });
     }
