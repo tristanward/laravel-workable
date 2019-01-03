@@ -18,7 +18,6 @@ class LaravelWorkableServiceProvider extends ServiceProvider
 
         $this->publishConfigs();
         $this->publishDatabaseFiles();
-        $this->publishCommands();
     }
 
     /**
@@ -30,7 +29,7 @@ class LaravelWorkableServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             $this->getConfigsPath(),
-            'LaravelWorkable'
+            'laravel-workable'
         );
     }
 
@@ -42,7 +41,7 @@ class LaravelWorkableServiceProvider extends ServiceProvider
     private function publishConfigs()
     {
         $this->publishes([
-            $this->getConfigsPath() => config_path('LaravelWorkable.php'),
+            $this->getConfigsPath() => config_path('laravel-workable.php'),
         ], 'config');
     }
 
@@ -53,7 +52,7 @@ class LaravelWorkableServiceProvider extends ServiceProvider
      */
     private function getConfigsPath()
     {
-        return __DIR__.'/../Config/LaravelWorkable.php';
+        return __DIR__.'/../Config/laravel-workable.php';
     }
 
     /**
