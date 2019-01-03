@@ -1,0 +1,31 @@
+{
+    "name": "tristanward/laravel-workable",
+    "description": "A Workable wrapper for Laravel. Cache Workable vacancies.",
+    "keywords": ["laravel","workable","wrapper"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tristan Ward",
+            "email": "tristanward1989@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tristanward\\LaravelWorkable\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tristanward\\LaravelWorkable\\Providers\\LaravelWorkableServiceProvider"
+            ],
+            "aliases": {
+                "LaravelWorkable": "Tristanward\\LaravelWorkable\\Facades\\LaravelWorkable"
+            }
+        }
+    }
+}
