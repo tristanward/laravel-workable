@@ -12,4 +12,24 @@ class WorkableVacancy extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+    /**
+     * Get all unique locations from workable vacancies
+     *
+     * @return Array
+     */
+    public static function uniqueLocations()
+    {
+        return self::pluck('city')->unique()->sort()->all();
+    }
+
+    /**
+     * Get all unique positions from workable vacancies
+     *
+     * @return Array
+     */
+    public static function uniquePositions()
+    {
+        return self::pluck('title')->unique()->sort()->all();
+    }
 }
