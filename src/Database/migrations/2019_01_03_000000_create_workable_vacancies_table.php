@@ -25,7 +25,10 @@ class CreateWorkableVacanciesTable extends Migration
             $table->string('url');
             $table->string('application_url');
             $table->string('shortlink');
-            $table->json('location');
+            $table->string('country')->nullable();
+            $table->string('region')->nullable();
+            $table->string('city')->nullable();
+            $table->string('zip_code')->nullable();
             $table->string('workable_created_at');
             $table->text('description')->nullable();
             $table->text('requirements')->nullable();
