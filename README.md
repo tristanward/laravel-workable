@@ -87,7 +87,7 @@ $vacancies = LaravelWorkable::vacancies();
 $vacancies = LaravelWorkable::vacancies($state = 'draft');
 
 // Full data for a single vacancy can be accessed with it's $shortcode
-$vacancy = LaravelWorkable::vacancy($shortcode = 'ABCDEFGHIJ')
+$vacancy = LaravelWorkable::vacancy($shortcode = 'ABCDEFGHIJ');
 ```
 
 # Thanks
