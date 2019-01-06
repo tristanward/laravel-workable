@@ -73,7 +73,7 @@ $positions = WorkableVacancy::uniquePositions();
 ```
 
 ## Direct API Usage
-Laravel Workable provides a Laravel facade to use the Workable API wrapper if needed.  These functions use the Workable API directly so you need to consider API access rate limitations.
+Laravel Workable also provides a Laravel facade to use the Workable API wrapper if needed.  These functions use the Workable API directly so you need to consider API access rate limitations.
 
 ```php
 <?php
