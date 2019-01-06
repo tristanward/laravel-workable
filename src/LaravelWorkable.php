@@ -8,6 +8,18 @@ use Tristanward\LaravelWorkable\Models\WorkableVacancy;
 
 class LaravelWorkable
 {
+    private $baseUrl;
+    
+    /**
+     * Create a new LaravelWorkable instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->baseUrl = $this->baseUrl(config('laravel-workable.subdomain'));
+    }
+
     /**
      * Get raw data for all vacancies
      *
@@ -16,9 +28,9 @@ class LaravelWorkable
      */
     public function vacancies($state = 'published')
     {
-        $client = new Client(['base_uri' => config('laravel-workable.base_url')]);
-
-        $response = $client->request('GET', '/spi/v3/jobs', [
+        $client = new Client(['base_uri' => $this->baseUrl]);
+        
+        $response = $client->request('GET', 'jobs', [
             'headers' => [
                 'Authorization' => 'Bearer ' . config('laravel-workable.access_token'),        
                 'Accept' => 'application/json',
@@ -41,9 +53,9 @@ class LaravelWorkable
      */
     public function vacancy($shortcode, $state = 'published')
     {
-        $client = new Client(['base_uri' => config('laravel-workable.base_url')]);
+        $client = new Client(['base_uri' => $this->baseUrl]);
 
-        $response = $client->request('GET', '/spi/v3/jobs/' . $shortcode, [
+        $response = $client->request('GET', sprintf('jobs/%s', $shortcode), [
             'headers' => [
                 'Authorization' => 'Bearer ' . config('laravel-workable.access_token'),        
                 'Accept' => 'application/json',
@@ -65,5 +77,16 @@ class LaravelWorkable
     private function decodeContents($response)
     {
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    /**
+     * Get the workable API base url
+     *
+     * @param String $subdomain
+     * @return String
+     */
+    private function baseUrl($subdomain)
+    {
+        return sprintf('https://%s.workable.com/spi/v3/', $subdomain);
     }
 }
