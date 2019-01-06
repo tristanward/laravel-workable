@@ -1,6 +1,6 @@
 {
     "name": "tristanward/laravel-workable",
-    "description": "A Workable API wrapper for Laravel. Easily access and cache Workable vacancies from your Workable account using the official Workable API.",
+    "description": "A Laravel wrapper for the Workable API. Easily access and cache Workable vacancies from your Workable account using the official Workable API.",
     "keywords": ["laravel","workable","wrapper"],
     "license": "MIT",
     "authors": [

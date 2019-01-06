@@ -1,5 +1,5 @@
 # Laravel Workable
-A Workable API wrapper for Laravel. Easily access and cache Workable vacancies from your Workable account using the official Workable API.
+A Laravel wrapper for the Workable API. Easily access and cache Workable vacancies from your Workable account using the official Workable API.
 
 ## Installation
 Install via composer:
