@@ -18,10 +18,9 @@ The Workable `subdomain` and `access token` should be configured in the Laravel 
 ```
 WORKABLE_SUBDOMAIN=your-sub-domain
 WORKABLE_ACCESS_TOKEN=your-access-token
-
 ```
-## Cache Workable Vacancies
 
+## Cache Workable Vacancies
 Workable vacancies can be cached to limit calls to the Workable API.  To do this a `workable_vacancies` table must first be created using the included migration:
 
 ```
@@ -54,3 +53,42 @@ protected function schedule(Schedule $schedule)
         ->at('03:00');
 }
 ```
+
+## Using cached Workable vacancies
+Once Workable vacancies have been cached they can be used like a normal Laravel eloquent model:
+
+```php
+<?php
+
+use Tristanward\LaravelWorkable\Models\WorkableVacancy;
+
+// Get all cached Workable vacancies
+$vacancies = WorkableVacancy::all();
+
+// Get an array of all unique vacancy locations
+$locations = WorkableVacancy::uniqueLocations();
+
+// Get an array of all unique vacancy positions
+$positions = WorkableVacancy::uniquePositions();
+```
+
+## Direct API Usage
+Laravel Workable provides a Laravel facade to use the Workable API wrapper if needed.  These functions use the Workable API directly so you need to consider API access rate limitations.
+
+```php
+<?php
+
+use Tristanward\LaravelWorkable\Facades\LaravelWorkable;
+
+// Get all published workable vacancies
+$vacancies = WorkableVacancy::all();
+
+// Alternatively, a state may be provided
+$vacancies = WorkableVacancy::all($state = 'draft');
+
+// Full data for a single vacancy can be accessed with it's $shortcode
+$vacancy = LaravelWorkable::vacancy($shortcode = 'ABCDEFGHIJ')
+```
+
+# Thanks
+[https://www.tristanward.co.uk](https://www.tristanward.co.uk)
