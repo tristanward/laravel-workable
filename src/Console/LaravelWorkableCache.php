@@ -21,7 +21,7 @@ class LaravelWorkableCache extends Command
      *
      * @var string
      */
-    protected $description = 'Cache all current workable vacancies.';
+    protected $description = 'Cache all current workable vacancies.  Synchronises locally cached vacancies with live vacancies.';
 
     /**
      * Create a new command instance.

@@ -8,8 +8,6 @@ use Tristanward\LaravelWorkable\Models\WorkableVacancy;
 
 class LaravelWorkable
 {
-    private $response;
-
     /**
      * Get raw data for all vacancies
      *
@@ -20,7 +18,7 @@ class LaravelWorkable
     {
         $client = new Client(['base_uri' => config('laravel-workable.base_url')]);
 
-        $this->response = $client->request('GET', '/spi/v3/jobs', [
+        $response = $client->request('GET', '/spi/v3/jobs', [
             'headers' => [
                 'Authorization' => 'Bearer ' . config('laravel-workable.access_token'),        
                 'Accept' => 'application/json',
@@ -30,17 +28,42 @@ class LaravelWorkable
                 'include_fields' => config('laravel-workable.include_fields'),
             ],
         ]);
-
-        return collect($this->getData());
+        
+        return collect($this->decodeContents($response)['jobs']);
     }
 
     /**
-     * Get data from response
+     * Get full data for a specific vacancy using shortcode
      *
-     * @return String
+     * @param String $shortcode
+     * @param String $state
+     * @return Array
      */
-    private function getData()
+    public function vacancy($shortcode, $state = 'published')
     {
-        return json_decode($this->response->getBody()->getContents(), true)['jobs'];
+        $client = new Client(['base_uri' => config('laravel-workable.base_url')]);
+
+        $response = $client->request('GET', '/spi/v3/jobs/' . $shortcode, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . config('laravel-workable.access_token'),        
+                'Accept' => 'application/json',
+            ],
+            'query' => [
+                'state' => $state,
+            ],
+        ]);
+
+        return $this->decodeContents($response);
+    }
+
+    /**
+     * Get contents from a GuzzleHttp Response and decode json
+     *
+     * @param GuzzleHttp\Psr7\Response $response
+     * @return Array
+     */
+    private function decodeContents($response)
+    {
+        return json_decode($response->getBody()->getContents(), true);
     }
 }
