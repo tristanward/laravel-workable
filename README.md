@@ -81,10 +81,10 @@ Laravel Workable also provides a Laravel facade to use the Workable API wrapper 
 use Tristanward\LaravelWorkable\Facades\LaravelWorkable;
 
 // Get all published workable vacancies
-$vacancies = WorkableVacancy::all();
+$vacancies = LaravelWorkable::vacancies();
 
 // Alternatively, a state may be provided
-$vacancies = WorkableVacancy::all($state = 'draft');
+$vacancies = LaravelWorkable::vacancies($state = 'draft');
 
 // Full data for a single vacancy can be accessed with it's $shortcode
 $vacancy = LaravelWorkable::vacancy($shortcode = 'ABCDEFGHIJ')
