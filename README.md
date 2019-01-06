@@ -33,7 +33,7 @@ To cache all Workable vacancies use the `laravel-workable:cache` console command
 php artistan laravel-workable:cache
 ```
 
-This command can be used in Laravel's default scheduler, for example to cache recent Workable vacancies at 03:00 on Sundays:
+This command can be used in Laravel's default scheduler, for example to cache all published Workable vacancies at 03:00 on Sundays:
 
 ```php
 // App/Console/Kernel.php
