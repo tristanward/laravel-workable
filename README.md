@@ -30,7 +30,7 @@ php artisan migrate
 To cache all Workable vacancies use the `laravel-workable:cache` console command.  This command will remove all previously cached vacancies and replace them with the current published vacancies.
 
 ```
-php artistan laravel-workable:cache
+php artisan laravel-workable:cache
 ```
 
 This command can be used in Laravel's default scheduler, for example to cache all published Workable vacancies at 03:00 on Sundays:
